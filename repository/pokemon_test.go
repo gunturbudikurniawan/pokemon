@@ -272,15 +272,15 @@ func Test_Get_Player(t *testing.T) {
 		wantError: false,
 		mockQuery: func(mock sqlmock.Sqlmock) {
 			mock.ExpectQuery(regexp.QuoteMeta(expectedQuery)).
-				WillReturnRows(sqlmock.NewRows([]string{"name", "scores"}).AddRow("rrere", 200).AddRow("neymar", 100))
+				WillReturnRows(sqlmock.NewRows([]string{"name", "scores"}).AddRow("Guntur", 200).AddRow("Kurniawan	", 100))
 		},
 		expectedResult: []models.DetailPlayers{
 			{
-				Name:   "rrere",
+				Name:   "Guntur",
 				Scores: 200,
 			},
 			{
-				Name:   "neymar",
+				Name:   "Kurniawan",
 				Scores: 100,
 			},
 		},
@@ -371,7 +371,7 @@ func Test_Get_Battle(t *testing.T) {
 				db: db,
 			}
 
-			res, serr := repo.GetBattle("2022-07-02", "2022-07-02")
+			res, serr := repo.GetBattle("2022-10-12", "2022-10-12")
 			if tc.wantError {
 				log.Print(tc.name)
 				assert.EqualError(t, serr, tc.expectedError.Error())
